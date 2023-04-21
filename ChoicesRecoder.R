@@ -1,13 +1,6 @@
 #################
 # 18/04/2023 - Bernardo Leivas -
-# This code is based on Choice-Based Choice data. Ultimately we want to 
-# convey in one single file the products that respondents said they would
-# choose over other available options. However, we have this information
-# in two separate files and some recoding is necessary to make it work
-# in one single file.
-#
-#
-# ***Note: This is not the final version. While this code already runs quite fast (~ 3 secs) it could be more scalable and neat.
+# Choice modelling data 
 #################
 
 ## Build a Single CSV with Dual None  ##
