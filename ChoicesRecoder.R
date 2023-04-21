@@ -19,8 +19,8 @@ library(tibble)
 # of products shown in each screen for each respondent.
 
 setwd("C:/Users/BernardoLeivasdeAlme/OneDrive - SKIM/Trainings/My R/Counts")
-responses <- read_csv(file.path(getwd(), "1. PoultryUK_responses_v4.csv"))
-design <- read_csv(file.path(getwd(), "7. 50 desjes picked HW.csv"))
+responses <- read_csv(file.path(getwd(), "responses.csv"))
+design <- read_csv(file.path(getwd(), "50_designs.csv"))
 
 
 ## 1) 1st step create a single csv file with the actual skus and concepts (without the none)
