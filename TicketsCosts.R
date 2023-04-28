@@ -24,8 +24,8 @@ csv_files <- list.files(path, pattern = "*.csv", full.names = TRUE)
 
 ## 1) This code does the following:
 #  1.1) grabs each file from the csv_file list and read all but the first 4 rows.
-#  1.2) it then creates a column with the file name, which is a data. To keep it organized.
-#  1.3) After doing this for all files it binrows compile all files together. 
+#  1.2) it then creates a column with the file name, with is a data between the period of analaysis.
+#  1.3) After doing this for all files it compile all files together by colmun, reason why is faster than rbind. 
 combined_data <- bind_rows(lapply(csv_files, function(x) {
   read_csv2(x, skip = 4,  na = c("")) %>% 
     mutate(Date_of_enter = str_extract(x, "(?<=/)[^/]+(?=\\.csv)"))
@@ -66,7 +66,7 @@ tidy_data_transaction <- tidy_data_transaction %>%
 # 2.1.1) create the graphic with Revenues, Cost and Total Loss 
 overall_balance <- ggplot(tidy_data_transaction, aes(x = variable, y = value, fill = variable)) +
   geom_bar(stat = "identity", position = "dodge") +
-  scale_fill_manual(values = c("red", "blue", "red"), 
+  scale_fill_manual(values = c("red", "blue", "red"), # add manually the colors for the bars
                     guide = FALSE, # remove legend
                     name = "") + # remove legend title
   theme_minimal() +
@@ -120,11 +120,9 @@ top_losses <- ggplot(Final_Data %>%  slice(1:20), aes(x = reorder(Airline_name, 
   labs( x = "", y = "", title = NULL) +
   theme_minimal()+
   coord_flip()
-top_losses
 
 ## 2.2.4) export graph
 ggsave("2.png", plot = top_losses, dpi = 300, width = 8, height = 6, units = "in")
-
 
 
 ###### 2.3) Why these two companies account for such a figure? What distinguishes them from the other companies? #######
@@ -157,7 +155,6 @@ most_expensive_entries <- data_for_calculations %>%
   summarize(counts_per_airline = n()) %>% # count how many times each airline had Cancel. or Chan.
   mutate(percentage_counts = round(counts_per_airline/sum(counts_per_airline),2)) %>% 
   arrange(desc(percentage_counts))
-most_expensive_entries
 
 
 # 2.3.3) Let's visualize this results for a better overview across the top 20 Airline Companies.
@@ -172,7 +169,6 @@ top_entries <- ggplot(most_expensive_entries %>% slice(1:20), aes(x = percentage
 top_entries
 
 ggsave("4.png", plot = top_entries, dpi = 300, width = 8, height = 6, units = "in")
-
 
 
 # However, it begs the question:
