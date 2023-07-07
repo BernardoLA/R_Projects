@@ -118,8 +118,7 @@ models <- function(data,name){
 }
 
 
-## Now run the function for all datasets
-# Direct
+###### Now run the function for all datasets #####
 datasets <- list(direct, meta, skyscanner)
 names <- c("Direct", "Meta", "Skyscanner")
 
@@ -217,7 +216,7 @@ rules_analysis <- function(data, controls = FALSE) {
 rules_analysis(df_sample_1)
 
 # run with controls
-riles_analysis(df_sample_1, T)
+rules_analysis(df_sample_1, T)
 
 ## I started with both formulas divided below
 # After I decided to combine both in one single function
